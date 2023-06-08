@@ -20,7 +20,6 @@ public class Drone {
 
     private Long numeroSerie;
 
-    @NotNull
     private Long numeroLicenca;
 
     private Date dataCompra;

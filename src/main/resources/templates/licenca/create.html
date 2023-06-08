@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="d-flex justify-content-between">Salvar
+          <h4 class="d-flex justify-content-between"> Criar
             <a th:href="@{/drone}" class="btn btn-danger float-end">Voltar</a>
           </h4>
         </div>
@@ -27,7 +27,13 @@
               <input type="number" min="0" class="form-control" name="numeroLicenca"
                      id="numeroLicenca">
             </div>
-
+            <div class="mb-3">
+              <label>Drone</label>
+              <select class="form-control" name="idDrone" id="idDrone">
+                <option value="0">Selecione</option>
+                <option th:each="drone : ${drones}" th:value="${drone.getId()}" th:text="${drone.getModelo()}"></option>
+              </select>
+            </div>
             <div class="mb-3">
               <label>Data de emissão:</label>
               <input type="date" class="form-control" name="dataEmissao"

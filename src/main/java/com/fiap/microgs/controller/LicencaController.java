@@ -1,7 +1,6 @@
 package com.fiap.microgs.controller;
 
 import com.fiap.microgs.model.Drone;
-import com.fiap.microgs.model.HistoricoVoo;
 import com.fiap.microgs.model.LicencaVoo;
 import com.fiap.microgs.service.DroneService;
 import com.fiap.microgs.service.LicencaService;
@@ -22,9 +21,15 @@ public class LicencaController {
     @Autowired
     private LicencaService licencaService;
 
+    @Autowired
+    private DroneService droneService;
+
     @GetMapping("/create")
     public ModelAndView create() {
-        return new ModelAndView("licenca/create");
+        ModelAndView model = new ModelAndView("licenca/create");
+        List<Drone> drones = droneService.findAll();
+        model.addObject("drones", drones);
+        return model;
     }
 
     @PostMapping("/create")
@@ -38,6 +43,8 @@ public class LicencaController {
         LicencaVoo licenca = licencaService.findById(id);
         ModelAndView modelAndView = new ModelAndView("licenca/edit");
         modelAndView.addObject("licenca", licenca);
+        List<Drone> drones = droneService.findAll();
+        modelAndView.addObject("drones", drones);
         return modelAndView;
     }
 
