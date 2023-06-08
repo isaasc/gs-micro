@@ -36,7 +36,7 @@ public class UsuarioController {
         if (role.equals("drone-seed")) {
             return new RedirectView("/drone");
         } else if (role.equals("telemetria-reader")) {
-            return new RedirectView("/drone");
+            return new RedirectView("/drone/visualize");
         } else if (role.equals("drone-admin")) {
             return new RedirectView("/drone");
         } else {

@@ -41,6 +41,18 @@ public class DroneController {
         return model;
     }
 
+    @GetMapping("/visualize")
+    public ModelAndView getVisualize() {
+        ModelAndView model = new ModelAndView("drone/see");
+        List<Drone> dronesList = droneService.findAll();
+        List<LicencaVoo> licencasVooList = licencaService.findAll();
+        List<HistoricoVoo> historicoVooListList = historicoService.findAll();
+        model.addObject("drones", dronesList);
+        model.addObject("licencas", licencasVooList);
+        model.addObject("historicos", historicoVooListList);
+        return model;
+    }
+
     @GetMapping("/create")
     public ModelAndView create() {
         return new ModelAndView("drone/create");
