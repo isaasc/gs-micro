@@ -1,0 +1,77 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Adicionar Drone</title>
+</head>
+<body>
+<h1>Tela de cadastro</h1>
+<div class="card-body">
+    <form action="/usuario/create" th:object="${usuario}" method="post" id="frmUsuario">
+        <div class="mb-3">
+            <label>Nome:</label>
+            <input type="text" min="0" class="form-control" name="nome"
+                   id="nome">
+        </div>
+
+        <div class="mb-3">
+            <label>Role (drone-seed, telemetria-reader ou drone-admin):</label>
+            <input type="text" class="form-control" name="role"
+                   id="role">
+        </div>
+
+        <div class="mb-3">
+            <input type="button" class="btn btn-primary" value="Salvar" onclick="save()"/>
+        </div>
+    </form>
+    <div id="erros"></div>
+</div>
+</body>
+<script>
+	let responseEntity;
+
+	function save() {
+		const form = document.getElementById('frmUsuario');
+		const formData = new FormData(form);
+		const jsonBody = JSON.stringify(Object.fromEntries(formData.entries()));
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			body: jsonBody,
+			redirect: 'follow'
+		};
+
+		fetch("/usuario/create", requestOptions)
+			.then(response => {
+				responseEntity = response
+				return response.json()
+			})
+			.then(result => handleRedirect(result, responseEntity))
+			.catch(error => console.log('error', error));
+	}
+
+	async function handleRedirect(result, response) {
+		if (response.ok) {
+			alert('Criado com sucesso')
+
+			await new Promise(r => setTimeout(r, 1000));
+            const role = document.getElementById('role').value;
+            window.location.href = `/usuario/login/${role}`;
+			return;
+		}
+		let erros = document.getElementById('erros');
+		erros.innerHTML = '';
+		let itemList = '';
+
+		erros.innerHTML = itemList;
+	}
+
+</script>
+</html>

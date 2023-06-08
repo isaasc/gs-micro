@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Gestão dos drones</title>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="#drones" class="navbar-brand" style="color: white;">Drones</a>
+            <a href="#licencas" class="navbar-brand" style="color: white;">Licenças</a>
+            <a href="#historicos" class="navbar-brand" style="color: white;">Históricos</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid mt-4">
+        <h4 class="d-flex justify-content-between">Gestão dos drones
+            <a th:href="@{/drone/create}" class="btn btn-primary float-end">Add Drone</a>
+            <a th:href="@{/licenca/create}" class="btn btn-primary float-end">Add Licenca</a>
+            <a th:href="@{/historico/create}" class="btn btn-primary float-end">Add Historico</a>
+        </h4>
+        <div class="table-responsive" id="#drones">
+            <table class="table mt-3 table-hover">
+                <thead class="thead-dark">
+                <tr class="text-center">
+                    <th rowspan="3" class="align-middle">#</th>
+                    <th rowspan="3" class="align-middle">Modelo</th>
+                    <th rowspan="3" class="align-middle">Número de série</th>
+                    <th rowspan="3" class="align-middle">Número da licença</th>
+                    <th rowspan="3" class="align-middle">Data da compra</th>
+                    <th rowspan="3" class="align-middle">Horas totais de voo</th>
+                    <th rowspan="3" class="align-middle">Capacidade de carga</th>
+                    <th rowspan="3" class="align-middle">Capacidade de bateria</th>
+                    <th rowspan="3" class="align-middle">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="drone : ${drones}" class="text-center">
+                    <td class="align-middle" th:text="${drone.getId()}"></td>
+                    <td class="align-middle" th:text="${drone.getModelo}"></td>
+                    <td class="align-middle" th:text="${drone.getNumeroSerie()}"></td>
+                    <td class="align-middle" th:text="${drone.getNumeroLicenca()}"></td>
+                    <td class="align-middle" th:text="${drone.getDataCompra()}"></td>
+                    <td class="align-middle" th:text="${drone.getHorasTotalVoo()}"></td>
+                    <td class="align-middle" th:text="${drone.getCapacidadeBateria()}"></td>
+                    <td class="align-middle" th:text="${drone.getCapacidadeCarga()}"></td>
+                    <td class="align-middle">
+                        <a th:href="@{/drone/edit/{droneId} (droneId = ${drone.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/drone/delete/{id}(id=${drone.id})}" class="btn btn-danger btn-sm">Del</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive" id="#licencas">
+            <table class="table mt-3 table-hover">
+                <thead class="thead-dark">
+                <tr class="text-center">
+                    <th colspan="3">Licença para voar</th>
+                    <th rowspan="3" class="align-middle">Ações</th>
+                </tr>
+                <tr class="text-center">
+                    <th colspan="1" rowspan="2" class="align-middle">Número da licença</th>
+                    <th colspan="2" rowspan="1" class="align-middle">Datas</th>
+                </tr>
+                <tr class="text-center">
+                    <th>Emissão</th>
+                    <th>Validade</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="licenca : ${licencas}" class="text-center">
+                        <td class="align-middle" th:text="${licenca.getNumeroLicenca()}"></td>
+                        <td class="align-middle" th:text="${licenca.getDataEmissao()}"></td>
+                        <td class="align-middle" th:text="${licenca.getDataValidade()}"></td>
+<!--                        <td class="align-middle">-->
+<!--                            <a th:href="@{/licenca/edit/{id}(id=${licenca.id})}" class="btn btn-warning btn-sm">Edit</a>-->
+<!--                            <a th:href="@{/licenca/delete/{id}(id=${licenca.id})}" class="btn btn-danger btn-sm">Del</a>-->
+<!--                        </td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive" id="#historicos">
+            <table class="table mt-3 table-hover">
+                <thead class="thead-dark">
+                <tr class="text-center">
+                    <th colspan="10">Histórico de voo</th>
+                </tr>
+                <tr class="text-center">
+                    <th colspan="1" rowspan="2" class="align-middle">Id</th>
+                    <th colspan="2" class="align-middle">Latitude</th>
+                    <th colspan="2" class="align-middle">Longitude</th>
+                    <th colspan="2" class="align-middle">Datas</th>
+                    <th rowspan="2" class="align-middle">Altitude</th>
+                    <th rowspan="2" class="align-middle">Vel. Média</th>
+                    <th rowspan="3" class="align-middle">Ações</th>
+                </tr>
+                <tr class="text-center">
+                    <th>Início</th>
+                    <th>Fim</th>
+                    <th>Início</th>
+                    <th>Fim</th>
+                    <th>Decolagem</th>
+                    <th>Aterrisagem</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="historico : ${historicos}" class="text-center">
+                        <td class="align-middle" th:text="${historico.getId()}"></td>
+                        <td class="align-middle" th:text="${historico.getLatitudeInicio()}"></td>
+                        <td class="align-middle" th:text="${historico.getLatitudeFim()}"></td>
+                        <td class="align-middle" th:text="${historico.getLongitudeInicio()}"></td>
+                        <td class="align-middle" th:text="${historico.getLongitudeFim()}"></td>
+                        <td class="align-middle" th:text="${historico.getDataDecolagem()}"></td>
+                        <td class="align-middle" th:text="${historico.getDataAterrisagem()}"></td>
+                        <td class="align-middle" th:text="${historico.getAltitudeMedia()}"></td>
+                        <td class="align-middle" th:text="${historico.getVelocidadeMedia()}"></td>
+                        <td class="align-middle">
+                            <a th:href="@{/historico/edit/{id}(id=${historico.id})}" class="btn btn-warning btn-sm">Edit</a>
+                            <a th:href="@{/historico/delete/{id}(id=${historico.id})}" class="btn btn-danger btn-sm">Del</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>
