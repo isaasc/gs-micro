@@ -26,6 +26,9 @@ public class TelemetriaController {
     @Autowired
     private TelemetriaService telemetriaService;
 
+    @Autowired
+    private DroneService droneService;
+
     @GetMapping("")
     public ModelAndView getListView() {
         ModelAndView model = new ModelAndView("telemetria/list");
@@ -36,7 +39,11 @@ public class TelemetriaController {
 
     @GetMapping("/create")
     public ModelAndView getCreateView() {
-        return new ModelAndView("telemetria/create");
+        ModelAndView model = new ModelAndView("telemetria/create");
+        List<Drone> drones = droneService.findAll();
+
+        model.addObject("drones", drones);
+        return model;
     }
 
     @PostMapping("/create")

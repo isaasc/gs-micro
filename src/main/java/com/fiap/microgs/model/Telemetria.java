@@ -4,11 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -19,21 +18,18 @@ public class Telemetria {
     private Long id;
 
     @NotNull
-    @NotBlank
+    private Long idDrone;
+
     private String latitude;
 
-    @NotNull
-    @NotBlank
     private String longitude;
 
-    @NotNull
-    @NotBlank
-    private String velocidade;
+    private int altitude;
 
-    @NotNull
-    @NotBlank
-    private String direcao;
+    private int velocidade;
 
-    private Date dataHora;
+    private int direcao;
+
+    private LocalDateTime dataHora;
 
 }

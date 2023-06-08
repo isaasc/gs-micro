@@ -26,8 +26,9 @@
           <th class="align-middle">#</th>
           <th class="align-middle">Latitude</th>
           <th class="align-middle">Longitude</th>
-          <th class="align-middle">Velocidade</th>
-          <th class="align-middle">Direcao</th>
+          <th class="align-middle">Altitude (m)</th>
+          <th class="align-middle">Velocidade (m/s)</th>
+          <th class="align-middle">Direção (°)</th>
           <th class="align-middle">Data e Hora</th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
           <td class="align-middle" th:text="${telemetria.getId()}"></td>
           <td class="align-middle" th:text="${telemetria.getLatitude()}"></td>
           <td class="align-middle" th:text="${telemetria.getLongitude()}"></td>
+          <td class="align-middle" th:text="${telemetria.getLatitude()}"></td>
           <td class="align-middle" th:text="${telemetria.getVelocidade()}"></td>
           <td class="align-middle" th:text="${telemetria.getDirecao()}"></td>
           <td class="align-middle" th:text="${telemetria.getDataHora()}"></td>
