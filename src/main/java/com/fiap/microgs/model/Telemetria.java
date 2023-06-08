@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -34,8 +34,6 @@ public class Telemetria {
     @NotBlank
     private String direcao;
 
-    @NotNull
-    @NotBlank
     private Date dataHora;
 
 }

@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Criação drones</title>
 </head>
-<body>
 
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h1 style="color: white;">Telemetrias</h1>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid mt-4">
+        <div class="table-responsive" id="#telemetrias">
+            <form action="/telemetria/create" th:object="${telemetria}" method="post" id="frmTelemetria">
+                <div class="mb-3">
+                    <label>Latitude:</label>
+                    <input type="text" class="form-control" name="latitude" id="latitude">
+                </div>
+                <div class="mb-3">
+                    <label>Longitude:</label>
+                    <input type="text" class="form-control" name="longitude" id="longitude">
+                </div>
+                <div class="mb-3">
+                    <label>Velocidade:</label>
+                    <input type="text" class="form-control" name="velocidade" id="velocidade">
+                </div>
+                <div class="mb-3">
+                    <label>Direção:</label>
+                    <input type="text" class="form-control" name="direcao" id="direcao">
+                </div>
+                <div class="mb-3">
+                    <label>Data e Hora:</label>
+                    <input type="date" class="form-control" name="datHora" id="datHora">
+                </div>
+                <div class="mb-3">
+                    <input type="button" class="btn btn-primary" value="Salvar" onclick="save()"/>
+                </div>
+            </form>
+            <div id="erros"></div>
+        </div>
+    </div>
+</main>
 </body>
+<script>
+	let responseEntity;
+
+	function save() {
+		const form = document.getElementById('frmTelemetria');
+		const formData = new FormData(form);
+		const jsonBody = JSON.stringify(Object.fromEntries(formData.entries()));
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+			method: 'POST',
+			headers: myHeaders,
+			body: jsonBody,
+			redirect: 'follow'
+		};
+
+		fetch("/telemetria/create", requestOptions)
+			.then(response => {
+				responseEntity = response
+				return response.json()
+			})
+			.then(result => handleRedirect(result, responseEntity))
+			.catch(error => console.log('error', error));
+	}
+
+	async function handleRedirect(result, response) {
+		if (response.ok) {
+			alert('Criado com sucesso')
+
+			await new Promise(r => setTimeout(r, 2000));
+			window.location.href = "/telemetria/create";
+			return;
+		}
+		let erros = document.getElementById('erros');
+		erros.innerHTML = '';
+		let itemList = '';
+
+		if (data.hasOwnProperty('modelo'))
+			itemList = `<li class="text-danger">${result.modelo}</li>`;
+
+		erros.innerHTML = itemList;
+	}
+
+</script>
 </html>

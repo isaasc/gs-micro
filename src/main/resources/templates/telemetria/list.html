@@ -23,9 +23,6 @@
       <table class="table mt-3 table-hover">
         <thead class="thead-dark">
         <tr class="text-center">
-          <th colspan="10">Telemetria</th>
-        </tr>
-        <tr class="text-center">
           <th class="align-middle">#</th>
           <th class="align-middle">Latitude</th>
           <th class="align-middle">Longitude</th>
@@ -39,9 +36,9 @@
           <td class="align-middle" th:text="${telemetria.getId()}"></td>
           <td class="align-middle" th:text="${telemetria.getLatitude()}"></td>
           <td class="align-middle" th:text="${telemetria.getLongitude()}"></td>
-          <td class="align-middle" th:text="${historico.getVelocidade()}"></td>
-          <td class="align-middle" th:text="${historico.getDirecao()}"></td>
-          <td class="align-middle" th:text="${historico.getDataHora()}"></td>
+          <td class="align-middle" th:text="${telemetria.getVelocidade()}"></td>
+          <td class="align-middle" th:text="${telemetria.getDirecao()}"></td>
+          <td class="align-middle" th:text="${telemetria.getDataHora()}"></td>
         </tr>
         </tbody>
       </table>
