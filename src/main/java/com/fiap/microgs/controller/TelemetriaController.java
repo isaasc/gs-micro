@@ -35,7 +35,6 @@ public class TelemetriaController {
     public ModelAndView getCreateView() {
         ModelAndView model = new ModelAndView("telemetria/create");
         List<Drone> drones = droneService.findAll();
-
         model.addObject("drones", drones);
         return model;
     }

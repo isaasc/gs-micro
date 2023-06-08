@@ -39,11 +39,11 @@
                 </div>
                 <div class="mb-3">
                     <label>Altitude (m):</label>
-                    <input type="number" class="form-control" name="altitude" id="altitude">
+                    <input type="number" min="0" class="form-control" name="altitude" id="altitude">
                 </div>
                 <div class="mb-3">
                     <label>Velocidade (m/s):</label>
-                    <input type="number" class="form-control" name="velocidade" id="velocidade">
+                    <input type="number" min="0" class="form-control" name="velocidade" id="velocidade">
                 </div>
                 <div class="mb-3">
                     <label>Direção (°):</label>
@@ -56,6 +56,7 @@
                 <div class="mb-3">
                     <input type="button" class="btn btn-primary" value="Salvar" onclick="save()" />
                 </div>
+            </div>
         </form>
         <div id="erros"></div>
     </div>

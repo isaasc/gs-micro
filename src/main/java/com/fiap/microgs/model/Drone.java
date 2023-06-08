@@ -1,31 +1,34 @@
 package com.fiap.microgs.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Data
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "modelo"))
 public class Drone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String modelo;
 
     private Long numeroSerie;
 
+    @NotNull
     private Long numeroLicenca;
 
     private Date dataCompra;
 
-    private Long horasTotalVoo;
+    private int horasTotalVoo;
 
-    private String capacidadeBateria;
+    private int capacidadeBateria;
 
-    private String capacidadeCarga;
+    private int capacidadeCarga;
 
 }

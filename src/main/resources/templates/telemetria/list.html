@@ -24,6 +24,7 @@
         <thead class="thead-dark">
         <tr class="text-center">
           <th class="align-middle">#</th>
+          <th class="align-middle">IdDrone</th>
           <th class="align-middle">Latitude</th>
           <th class="align-middle">Longitude</th>
           <th class="align-middle">Altitude (m)</th>
@@ -35,6 +36,7 @@
         <tbody>
         <tr th:each="telemetria : ${telemetrias}" class="text-center">
           <td class="align-middle" th:text="${telemetria.getId()}"></td>
+          <td class="align-middle" th:text="${telemetria.getIdDrone()}"></td>
           <td class="align-middle" th:text="${telemetria.getLatitude()}"></td>
           <td class="align-middle" th:text="${telemetria.getLongitude()}"></td>
           <td class="align-middle" th:text="${telemetria.getLatitude()}"></td>
