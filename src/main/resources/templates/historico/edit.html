@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Editar Histórico</title>
 </head>
-<body>
 
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="d-flex justify-content-between"> Editar
+                        <a th:href="@{/drone}" class="btn btn-danger float-end">Voltar</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/historico/update}" th:object="${historico}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+                        <div class="mb-3">
+                            <label>Drone</label>
+                            <select class="form-control" th:field="*{idDrone}" id="idDrone">
+                                <option value="0">Selecione</option>
+                                <option th:each="drone : ${drones}" th:value="${drone.getId()}" th:text="${drone.getModelo()}"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Latitude início:</label>
+                            <input type="text" class="form-control" th:field="*{latitudeInicio}"
+                                   id="latitudeInicio">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Latitude fim:</label>
+                            <input type="text" class="form-control" th:field="*{latitudeFim}"
+                                   id="latitudeFim">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Longitude início:</label>
+                            <input type="text" class="form-control" th:field="*{longitudeInicio}"
+                                   id="longitudeInicio">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Longitude fim:</label>
+                            <input type="text" class="form-control" th:field="*{longitudeFim}"
+                                   id="longitudeFim">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Altitude (m):</label>
+                            <input type="number" class="form-control" th:field="*{altitude}"
+                                   id="altitude">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Data de decolagem:</label>
+                            <input type="date" class="form-control" th:field="*{dataDecolagem}"
+                                   id="dataDecolagem">
+                        </div>
+                        <div class="mb-3">
+                            <label>Data de decolagem:</label>
+                            <input type="date" class="form-control" th:field="*{dataAterrisagem}"
+                                   id="dataAterrisagem">
+                        </div>
+                        <div class="mb-3">
+                            <label>Velocidade média (m/s):</label>
+                            <input type="number" class="form-control" th:field="*{velocidadeMedia}"
+                                   id="velocidadeMedia">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-primary" value="Salvar"/>
+                        </div>
+                    </form>
+                    <div id="erros"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

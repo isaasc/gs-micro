@@ -1,8 +1,6 @@
 package com.fiap.microgs.service;
 
-import com.fiap.microgs.model.Drone;
 import com.fiap.microgs.model.LicencaVoo;
-import com.fiap.microgs.repository.DroneRepository;
 import com.fiap.microgs.repository.LicencaVooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -2,10 +2,8 @@ package com.fiap.microgs.controller;
 
 import com.fiap.microgs.model.Drone;
 import com.fiap.microgs.model.HistoricoVoo;
-import com.fiap.microgs.model.LicencaVoo;
 import com.fiap.microgs.service.DroneService;
 import com.fiap.microgs.service.HistoricoService;
-import com.fiap.microgs.service.LicencaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +21,15 @@ public class HistoricoController {
     @Autowired
     private HistoricoService historicoService;
 
+    @Autowired
+    private DroneService droneService;
+
     @GetMapping("/create")
     public ModelAndView create() {
-        return new ModelAndView("historico/create");
+        ModelAndView model = new ModelAndView("historico/create");
+        List<Drone> drones = droneService.findAll();
+        model.addObject("drones", drones);
+        return model;
     }
 
     @PostMapping("/create")
@@ -39,6 +43,8 @@ public class HistoricoController {
         HistoricoVoo historicoVoo = historicoService.findById(id);
         ModelAndView modelAndView = new ModelAndView("historico/edit");
         modelAndView.addObject("historico", historicoVoo);
+        List<Drone> drones = droneService.findAll();
+        modelAndView.addObject("drones", drones);
         return modelAndView;
     }
 

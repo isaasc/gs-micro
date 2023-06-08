@@ -28,11 +28,11 @@ public class HistoricoVoo {
 
     private String longitudeFim;
 
-    private String altitudeMedia;
+    private int altitude;
 
     private Date dataDecolagem;
 
     private Date dataAterrisagem;
 
-    private String velocidadeMedia;
+    private int velocidadeMedia;
 }
