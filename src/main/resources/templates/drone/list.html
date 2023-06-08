@@ -13,22 +13,23 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-            <a href="#drones" class="navbar-brand" style="color: white;">Drones</a>
-            <a href="#licencas" class="navbar-brand" style="color: white;">Licenças</a>
-            <a href="#historicos" class="navbar-brand" style="color: white;">Históricos</a>
+            <h1 style="color: white;">Gestão dos Drones</h1>
         </div>
     </nav>
 </header>
 <main>
     <div class="container-fluid mt-4">
-        <h4 class="d-flex justify-content-between">Gestão dos drones
+        <div class="d-flex justify-content-between">
             <a th:href="@{/drone/create}" class="btn btn-primary float-end">Add Drone</a>
             <a th:href="@{/licenca/create}" class="btn btn-primary float-end">Add Licenca</a>
             <a th:href="@{/historico/create}" class="btn btn-primary float-end">Add Historico</a>
-        </h4>
+        </div>
         <div class="table-responsive" id="#drones">
             <table class="table mt-3 table-hover">
                 <thead class="thead-dark">
+                <tr class="text-center">
+                    <th colspan="9">Drones</th>
+                </tr>
                 <tr class="text-center">
                     <th rowspan="3" class="align-middle">#</th>
                     <th rowspan="3" class="align-middle">Modelo</th>
@@ -77,15 +78,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="licenca : ${licencas}" class="text-center">
-                        <td class="align-middle" th:text="${licenca.getNumeroLicenca()}"></td>
-                        <td class="align-middle" th:text="${licenca.getDataEmissao()}"></td>
-                        <td class="align-middle" th:text="${licenca.getDataValidade()}"></td>
-<!--                        <td class="align-middle">-->
-<!--                            <a th:href="@{/licenca/edit/{id}(id=${licenca.id})}" class="btn btn-warning btn-sm">Edit</a>-->
-<!--                            <a th:href="@{/licenca/delete/{id}(id=${licenca.id})}" class="btn btn-danger btn-sm">Del</a>-->
-<!--                        </td>-->
-                    </tr>
+                <tr th:each="licenca : ${licencas}" class="text-center">
+                    <td class="align-middle" th:text="${licenca.getNumeroLicenca()}"></td>
+                    <td class="align-middle" th:text="${licenca.getDataEmissao()}"></td>
+                    <td class="align-middle" th:text="${licenca.getDataValidade()}"></td>
+                    <!--                        <td class="align-middle">-->
+                    <!--                            <a th:href="@{/licenca/edit/{id}(id=${licenca.id})}" class="btn btn-warning btn-sm">Edit</a>-->
+                    <!--                            <a th:href="@{/licenca/delete/{id}(id=${licenca.id})}" class="btn btn-danger btn-sm">Del</a>-->
+                    <!--                        </td>-->
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -115,21 +116,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="historico : ${historicos}" class="text-center">
-                        <td class="align-middle" th:text="${historico.getId()}"></td>
-                        <td class="align-middle" th:text="${historico.getLatitudeInicio()}"></td>
-                        <td class="align-middle" th:text="${historico.getLatitudeFim()}"></td>
-                        <td class="align-middle" th:text="${historico.getLongitudeInicio()}"></td>
-                        <td class="align-middle" th:text="${historico.getLongitudeFim()}"></td>
-                        <td class="align-middle" th:text="${historico.getDataDecolagem()}"></td>
-                        <td class="align-middle" th:text="${historico.getDataAterrisagem()}"></td>
-                        <td class="align-middle" th:text="${historico.getAltitudeMedia()}"></td>
-                        <td class="align-middle" th:text="${historico.getVelocidadeMedia()}"></td>
-                        <td class="align-middle">
-                            <a th:href="@{/historico/edit/{id}(id=${historico.id})}" class="btn btn-warning btn-sm">Edit</a>
-                            <a th:href="@{/historico/delete/{id}(id=${historico.id})}" class="btn btn-danger btn-sm">Del</a>
-                        </td>
-                    </tr>
+                <tr th:each="historico : ${historicos}" class="text-center">
+                    <td class="align-middle" th:text="${historico.getId()}"></td>
+                    <td class="align-middle" th:text="${historico.getLatitudeInicio()}"></td>
+                    <td class="align-middle" th:text="${historico.getLatitudeFim()}"></td>
+                    <td class="align-middle" th:text="${historico.getLongitudeInicio()}"></td>
+                    <td class="align-middle" th:text="${historico.getLongitudeFim()}"></td>
+                    <td class="align-middle" th:text="${historico.getDataDecolagem()}"></td>
+                    <td class="align-middle" th:text="${historico.getDataAterrisagem()}"></td>
+                    <td class="align-middle" th:text="${historico.getAltitudeMedia()}"></td>
+                    <td class="align-middle" th:text="${historico.getVelocidadeMedia()}"></td>
+                    <td class="align-middle">
+                        <a th:href="@{/historico/edit/{id}(id=${historico.id})}" class="btn btn-warning btn-sm">Edit</a>
+                        <a th:href="@{/historico/delete/{id}(id=${historico.id})}" class="btn btn-danger btn-sm">Del</a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

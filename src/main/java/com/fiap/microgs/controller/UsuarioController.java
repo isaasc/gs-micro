@@ -34,9 +34,9 @@ public class UsuarioController {
     @GetMapping("/login/{role}")
     public RedirectView redirect(Model model, @PathVariable("role") String role) {
         if (role.equals("drone-seed")) {
-            return new RedirectView("/drone");
+            return new RedirectView("/telemetria/create");
         } else if (role.equals("telemetria-reader")) {
-            return new RedirectView("/drone/visualize");
+            return new RedirectView("/telemetria");
         } else if (role.equals("drone-admin")) {
             return new RedirectView("/drone");
         } else {

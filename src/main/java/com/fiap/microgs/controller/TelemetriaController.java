@@ -26,6 +26,19 @@ public class TelemetriaController {
     @Autowired
     private TelemetriaService telemetriaService;
 
+    @GetMapping("")
+    public ModelAndView getListView() {
+        ModelAndView model = new ModelAndView("telemetria/list");
+        List<Telemetria> telemetriaList = telemetriaService.findAll();
+        model.addObject("telemetrias", telemetriaList);
+        return model;
+    }
+
+    @GetMapping("/create")
+    public ModelAndView getCreateView() {
+        return new ModelAndView("telemetria/create");
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Telemetria> create(@Valid @RequestBody Telemetria telemetria) {
         telemetriaService.save(telemetria);
